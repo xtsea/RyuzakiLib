@@ -53,8 +53,12 @@ setuptools.setup(
         "google-generativeai",
         "gradio-client",
         "gradio",
-        "huggingface_hub==0.22.2",
+        "huggingface-hub>=0.23.2",
         "motor",
+        "wget",
+        "uvicorn[standard]",
+        "fastapi[all]",
+        "authlib",
     ],
     classifiers=[
         "Programming Language :: Python :: 3",

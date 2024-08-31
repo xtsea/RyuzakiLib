@@ -47,33 +47,31 @@ Today is {dt.now():%A %d %B %Y %H:%M}
 class RendyDevChat:
     @staticmethod
     async def chat_hacked(
+        base_api_dev = "https://akeno.randydev.my.id",
         args: str = None,
         latest_model: str = "openai-latest",
         model_id: Optional[int] = None,
         user_id: Optional[int] = 0,
         mongo_url: Optional[str] = None,
         system_prompt: Optional[str] = owner_base,
-        list_model_all: Optional[bool] = False
+        list_model_all: Optional[bool] = False,
+        is_working_dev: Optional[bool] = False
     ):
         if latest_model == "openai-v2":
-            url = "https://randydev-ryuzaki-api.hf.space/ryuzaki/chatgpt-old"
+            if is_working_dev:
+                url = f"{base_api_dev}/ryuzaki/chatgpt-old"
+            else:
+                url = "https://randydev-ryuzaki-api.hf.space/ryuzaki/chatgpt-old"
             params = {"query": args}
-            check_response = await AsyicXSearcher.search(
-                url,
-                post=True,
-                re_json=True,
-                json=params
-            )
+            check_response = requests.post(url, json=params).json()
             return check_response["randydev"]["message"]
         elif latest_model == "blackbox":
-            url = "https://randydev-ryuzaki-api.hf.space/ryuzaki/blackbox"
+            if is_working_dev:
+                url = f"{base_api_dev}/ryuzaki/blackbox"
+            else:
+                url = f"https://randydev-ryuzaki-api.hf.space/ryuzaki/blackbox"
             params = {"query": args}
-            check_response = await AsyicXSearcher.search(
-                url,
-                post=True,
-                re_json=True,
-                json=params
-            )
+            check_response = requests.post(url, json=params).json()
             return check_response["randydev"]["message"]
         elif latest_model == "list-model":
             if list_model_all:
@@ -88,7 +86,10 @@ class RendyDevChat:
             else:
                 return "you can check set list_model_all=True"
         elif latest_model == "gemini-pro":
-            url = f"https://randydev-ryuzaki-api.hf.space/ryuzaki/gemini-ai-pro"
+            if is_working_dev:
+                url = f"{base_api_dev}/ryuzaki/gemini-ai-pro"
+            else:
+                url = f"https://randydev-ryuzaki-api.hf.space/ryuzaki/gemini-ai-pro"
             payload = {
                 "query": args,
                 "mongo_url": mongo_url,
@@ -96,109 +97,82 @@ class RendyDevChat:
                 "is_multi_chat": True
             }
             headers = {"accept": "application/json", "api-key": API_KEYS}
-            check_response = await AsyicXSearcher.search(
-                url,
-                post=True,
-                re_json=True,
-                headers=headers,
-                json=payload
-            )
+            check_response = requests.post(url, headers=headers, json=payload).json()
             return check_response["randydev"]["message"]
         elif latest_model == "microsoft":
-            url = "https://randydev-ryuzaki-api.hf.space/ryuzaki/faceai"
+            if is_working_dev:
+                url = f"{base_api_dev}/ryuzaki/faceai"
+            else:
+                url = f"https://randydev-ryuzaki-api.hf.space/ryuzaki/faceai"
             payload = {
                 "query": args,
                 "clients_name": "microsoft/Phi-3-mini-4k-instruct",
             }
             headers = {"accept": "application/json"}
-            check_response = await AsyicXSearcher.search(
-                url,
-                post=True,
-                re_json=True,
-                headers=headers,
-                json=payload
-            )
+            check_response = requests.post(url, headers=headers, json=payload).json()
             return check_response["randydev"]["message"]
         elif latest_model == "gemma":
-            url = "https://randydev-ryuzaki-api.hf.space/ryuzaki/faceai"
+            if is_working_dev:
+                url = f"{base_api_dev}/ryuzaki/faceai"
+            else:
+                url = f"https://randydev-ryuzaki-api.hf.space/ryuzaki/faceai"
             payload = {
                 "query": args,
                 "clients_name": "google/gemma-1.1-7b-it",
             }
             headers = {"accept": "application/json"}
-            check_response = await AsyicXSearcher.search(
-                url,
-                post=True,
-                re_json=True,
-                headers=headers,
-                json=payload
-            )
+            check_response = requests.post(url, headers=headers, json=payload).json()
             return check_response["randydev"]["message"]
         elif latest_model == "mistralai":
-            url = "https://randydev-ryuzaki-api.hf.space/ryuzaki/faceai"
+            if is_working_dev:
+                url = f"{base_api_dev}/ryuzaki/faceai"
+            else:
+                url = f"https://randydev-ryuzaki-api.hf.space/ryuzaki/faceai"
             payload = {
                 "query": args,
                 "clients_name": "mistralai/Mixtral-8x7B-Instruct-v0.1",
             }
             headers = {"accept": "application/json"}
-            check_response = await AsyicXSearcher.search(
-                url,
-                post=True,
-                re_json=True,
-                headers=headers,
-                json=payload
-            )
+            check_response = requests.post(url, headers=headers, json=payload).json()
             return check_response["randydev"]["message"]
         elif latest_model == "faceh4":
-            url = "https://randydev-ryuzaki-api.hf.space/ryuzaki/faceai"
+            if is_working_dev:
+                url = f"{base_api_dev}/ryuzaki/faceai"
+            else:
+                url = f"https://randydev-ryuzaki-api.hf.space/ryuzaki/faceai"
             payload = {
                 "query": args,
                 "clients_name": "HuggingFaceH4/zephyr-7b-beta",
             }
             headers = {"accept": "application/json"}
-            check_response = await AsyicXSearcher.search(
-                url,
-                post=True,
-                re_json=True,
-                headers=headers,
-                json=payload
-            )
+            check_response = requests.post(url, headers=headers, json=payload).json()
             return check_response["randydev"]["message"]
         elif latest_model == "google-ai":
-            url = f"https://randydev-ryuzaki-api.hf.space/ryuzaki/google-ai"
+            if is_working_dev:
+                url = f"{base_api_dev}/ryuzaki/google-ai"
+            else:
+                url = f"https://randydev-ryuzaki-api.hf.space/ryuzaki/google-ai"
             headers = {"accept": "application/json", "api-key": API_KEYS}
             params = {"query": args}
-            check_response = await AsyicXSearcher.search(
-                url,
-                post=True,
-                re_json=True,
-                headers=headers,
-                json=params
-            )
+            check_response = requests.post(url, headers=headers, json=params).json()
             return check_response["randydev"]["message"]
         elif latest_model == "betagoogle-ai":
-            url = f"https://randydev-ryuzaki-api.hf.space/ryuzaki/v1beta2-google-ai"
+            if is_working_dev:
+                url = f"{base_api_dev}/ryuzaki/v1beta2-google-ai"
+            else:
+                url = "https://randydev-ryuzaki-api.hf.space/ryuzaki/v1beta2-google-ai"
             headers = {"accept": "application/json", "api-key": API_KEYS}
             params = {"query": args}
-            check_response = await AsyicXSearcher.search(
-                url,
-                post=True,
-                re_json=True,
-                headers=headers,
-                json=params
-            )
+            check_response = requests.post(url, headers=headers, json=params).json()
             return check_response["randydev"]["message"]
         elif latest_model == "gpt-4-turbo":
-            url = f"https://randydev-ryuzaki-api.hf.space/ryuzaki/chatgpt-custom"
+            if is_working_dev:
+                url = f"{base_api_dev}/ryuzaki/chatgpt-custom"
+            else:
+                url = f"https://randydev-ryuzaki-api.hf.space/ryuzaki/chatgpt-custom"
             headers = {"accept": "application/json", "api-key": API_KEYS}
             params = {"query": args, "model": "gpt-4-turbo"}
-            check_response = await AsyicXSearcher.search(
-                url,
-                post=True,
-                re_json=True,
-                headers=headers,
-                json=params
-            )
+            check_response = requests.post(url, headers=headers, json=params).json()
             return check_response["randydev"]["message"]
         elif latest_model == "gpt-4o":
             clients_x = Clients_g4f()
@@ -221,15 +195,12 @@ class RendyDevChat:
         return downloaded_paths
 
     @staticmethod
-    async def image_generator(args):
-        url = f"https://randydev-ryuzaki-api.hf.space/ryuzaki/dalle3xl"
+    async def image_generator(args, base_api_dev="https://akeno.randydev.my.id", is_working_dev=False):
+        if is_working_dev:
+            url = f"{base_api_dev}/ryuzaki/dalle3xl"
+        else:
+            url = f"https://randydev-ryuzaki-api.hf.space/ryuzaki/dalle3xl"
         headers = {"accept": "application/json", "api-key": API_KEYS}
         payload = {"query": args}
-        check_response = await AsyicXSearcher.search(
-            url,
-            post=True,
-            re_json=True,
-            headers=headers,
-            json=payload
-        )
+        check_response = requests.post(url, headers=headers, json=payload).json()
         return check_response
