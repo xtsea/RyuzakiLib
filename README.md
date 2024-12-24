@@ -12,7 +12,7 @@
 
 > [!NOTE]
 > The project is no longer maintained or supported. Thanks for appreciating it.
-> You can use [akenoai-lib](https://github.com/TeamKillerX)
+> You can use [akenoai-lib](https://github.com/TeamKillerX/akenoai-lib)
 >
 > my*id domain is still blacklisted by telegram
 
