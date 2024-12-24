@@ -10,6 +10,12 @@
 ![Codeql](https://github.com/TeamKillerX/RyuzakiLib/actions/workflows/codeql.yml/badge.svg)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/TeamKillerX/RyuzakiLib/dev.svg)](https://results.pre-commit.ci/latest/github/TeamKillerX/RyuzakiLib/dev)
 
+> [!NOTE]
+> The project is no longer maintained or supported. Thanks for appreciating it.
+> You can use [akenoai-lib](https://github.com/TeamKillerX)
+>
+> my*id domain is still blacklisted by telegram
+
 # Disclaimer
 > [!WARNING]
 > RyuzakiLib is used to help your account activities on Telegram<br>We are not responsible for what you misuse in this repository!<br>Be careful when using this repository!<br>If one of the members misuses this repository, we are forced to ban you<br>Never ever abuse this repository
@@ -25,7 +31,6 @@ pip3 install git+https://github.com/TeamKillerX/RyuzakiLib.git#egg=RyuzakiLib[al
 
 * Only Developed by
 - [@xtdevs](https://t.me/xtdevs)
-- [@TrueSaiyan](https://t.me/TrueSaiyan)
 - [@moiusrname](https://t.me/moiusrname)
 - [@Hackintush](https://t.me/Hackintush)
 
